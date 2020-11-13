@@ -1,21 +1,34 @@
-import React, {useEffect} from 'react'
-import Input from './Input';
-import Button from './Button';
-import $ from 'jquery';
+import React, {useState} from 'react'
+import Input from './Input'
+import Button from './Button'
+import $ from 'jquery'
 
 function Modal() {
-    useEffect(() => {
-        $("#submit-disease").on('click', () => {
-            $.post("http://localhost:8080/api/diseases", response => {
-                if (response.status === 'success') {
-                    
-                }
-            })
-        });
-        return () => {
-            $("#submit-disease").off('click');
-        }
-    }, []);
+    const [disease, setDisease] = useState({
+        'name': '',
+        'description': '',
+        'treatment': ''
+    })
+
+    function sendDiseaseRequest() {
+        $.post("http://localhost:8080/api/diseases", disease, response => {
+            if (response.message === 'New disease Added!') {
+                window.location.reload()
+            }
+        })
+    }
+
+    function changeName(e) {
+        setDisease({...disease, 'name': e.target.value})
+    }
+
+    function changeDescription(e) {
+        setDisease({...disease, 'description': e.target.value})
+    }
+
+    function changeTreatment(e) {
+        setDisease({...disease, 'treatment': e.target.value})
+    }
 
     return (
         <div id="add-disease-modal" className="modal right fade" tabIndex="-1" role="dialog">
@@ -28,12 +41,12 @@ function Modal() {
                         </button>
                     </div>
                     <div className="modal-body p-4">
-                        <Input name="name" field="Name" placeholder="eg. Cacar" required={true} />
-                        <Input name="description" field="Description" multiline={true} placeholder="Enter disease's description" required={true} />
-                        <Input name="treatment" field="Treatment" multiline={true} placeholder="Enter disease's treatment" required={true} />
+                        <Input onChange={changeName} name="name" field="Name" placeholder="eg. Cacar" required={true} />
+                        <Input onChange={changeDescription} name="description" field="Description" multiline={true} placeholder="Enter disease's description" required={true} />
+                        <Input onChange={changeTreatment} name="treatment" field="Treatment" multiline={true} placeholder="Enter disease's treatment" required={true} />
                     </div>
                     <div className="modal-footer">
-                        <Button id="submit-disease" type="submit" color="primary" text="Add Disease" />
+                        <Button onClick={sendDiseaseRequest} type="submit" color="primary" text="Add Disease" />
                         <Button type="button" color="secondary" text="Cancel" dismiss="modal"/>
                     </div>
                 </div>
