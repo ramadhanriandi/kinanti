@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'Museo Sans Rounded';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Museo Sans Rounded'), url('./fonts/MuseoSansRounded100.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Museo Sans Rounded';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Museo Sans Rounded'), url('./fonts/MuseoSansRounded300.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Museo Sans Rounded';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Museo Sans Rounded'), url('./fonts/MuseoSansRounded500.woff') format('woff');
+}
+  
+@font-face {
+  font-family: 'Museo Sans Rounded';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Museo Sans Rounded'), url('./fonts/MuseoSansRounded700.woff') format('woff');
+}
+  
+
+@font-face {
+  font-family: 'Museo Sans Rounded';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Museo Sans Rounded'), url('./fonts/MuseoSansRounded900.woff') format('woff');
+}
+  
+
+@font-face {
+  font-family: 'Museo Sans Rounded';
+  font-style: normal;
+  font-weight: 1000;
+  src: local('Museo Sans Rounded'), url('./fonts/MuseoSansRounded1000.woff') format('woff');
+}
+
+body {
+  margin: 0;
+  padding:0;
+  font-family: 'Museo Sans Rounded', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 100;
+}

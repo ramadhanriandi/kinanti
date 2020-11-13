@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const apiRoutes = require('./routes/api');
 
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 app.use(bodyParser.json());
+app.use(cors());
 
 const dbPath = 'mongodb://localhost/kinanti';
 const options = {
