@@ -26,11 +26,12 @@ exports.add = function (req, res) {
   disease.save(function (err) {
     if (err)
       res.json(err);
-
-    res.json({
-      message: "New disease Added!",
-      data: disease,
-    });
+    else {
+      res.json({
+        message: "New disease Added!",
+        data: disease,
+      });
+    }
   });
 };
 
