@@ -1,7 +1,7 @@
 import React from 'react'
 import ListButton from './ListButton';
 
-function MainBar() {
+function MainBar(props) {
     return (
         <div className="d-flex flex-grow-1">
             <div className="p-4 w-25" style={{ 'background': '#edf1f2' }}>
@@ -12,13 +12,13 @@ function MainBar() {
                     Add Disease
                 </button>
                 <ul className="list-group">
-                    <ListButton name="Cacar" active />
+                    {drawListButton(props.list)}
                 </ul>
             </div>
             <div className="p-4 w-75">
                 <div className="h2">Cacar</div>
                 <hr />
-                <div class="mb-4">
+                <div className="mb-4">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
                 <div>
@@ -27,6 +27,12 @@ function MainBar() {
             </div>
         </div>
     )
+}
+
+function drawListButton(list) {
+    return list.map((data, index) => {
+        return <ListButton key={data._id} name={data.name} active={index == 0} />
+    });
 }
 
 export default MainBar

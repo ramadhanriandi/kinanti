@@ -1,10 +1,24 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Input from './Input';
 import Button from './Button';
+import $ from 'jquery';
 
 function Modal() {
+    useEffect(() => {
+        // effect
+        $("#submit-disease").on('click', () => {
+            $.post("http://localhost:8080/api/diseases", response => {
+                if (response.status === 'success') {
+                    
+                }
+            })
+        });
+        return () => {
+            $("#submit-disease").off('click');
+        }
+    })
     return (
-        <div id="add-disease-modal" className="modal right fade" tabindex="-1" role="dialog">
+        <div id="add-disease-modal" className="modal right fade" tabIndex="-1" role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header p-4">
@@ -14,13 +28,13 @@ function Modal() {
                         </button>
                     </div>
                     <div className="modal-body p-4">
-                        <Input field="Nama" placeholder="eg. Cacar" required={true} />
-                        <Input field="Description" multiline={true} placeholder="Enter disease's description" required={true} />
-                        <Input field="Treatment" multiline={true} placeholder="Enter disease's treatment" required={true} />
+                        <Input name="name" field="Name" placeholder="eg. Cacar" required={true} />
+                        <Input name="description" field="Description" multiline={true} placeholder="Enter disease's description" required={true} />
+                        <Input name="treatment" field="Treatment" multiline={true} placeholder="Enter disease's treatment" required={true} />
                     </div>
                     <div className="modal-footer">
-                        <Button color="primary" text="Add Disease" />
-                        <Button color="secondary" text="Cancel" dismiss="modal"/>
+                        <Button id="submit-disease" type="submit" color="primary" text="Add Disease" />
+                        <Button type="button" color="secondary" text="Cancel" dismiss="modal"/>
                     </div>
                 </div>
             </div>
