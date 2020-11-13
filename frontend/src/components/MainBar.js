@@ -1,38 +1,63 @@
-import React from 'react'
-import ListButton from './ListButton';
+import React, { useEffect, useState } from 'react'
+import ListButton from './ListButton'
+import $ from 'jquery';
 
 function MainBar(props) {
+    const [id, setId] = useState(-1);
+    const [detail, setDetail] = useState();
+
+    useEffect(() => {
+        if (id !== -1) {
+            $.get(`http://localhost:8080/api/diseases/${id}`, response => {
+                setDetail(response.data);
+            })
+        }
+    }, [id]);
+
+    function clickList(id, event) {
+        setId(id);
+    }
+
+    function showListButton(list) {
+        return list.map(data => {
+            return <ListButton key={data._id} name={data.name}
+                onClick={(e) => clickList(data._id, e)} />
+        })
+    }
+
+    function showDetail(detail) {
+        if (detail) {
+            return (
+                <div className="p-4 w-75">
+                    <div className="h2">{detail.name}</div>
+                    <hr />
+                    <div className="mb-4">
+                        {detail.description}
+                    </div>
+                    <div>
+                        Treatment: <b>{detail.treatment}</b>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     return (
         <div className="d-flex flex-grow-1">
             <div className="p-4 w-25" style={{ 'background': '#edf1f2' }}>
                 <div className="h5">Diseases List</div>
-                <button className="my-3 py-2 btn btn-primary btn-block text-medium" 
+                <button className="my-3 py-2 btn btn-primary btn-block text-medium"
                     style={{ "background": "rgb(32, 83, 175)", "fontSize": 12, "fontWeight": 500 }}
                     data-toggle="modal" data-target="#add-disease-modal">
                     Add Disease
                 </button>
                 <ul className="list-group">
-                    {drawListButton(props.list)}
+                    {showListButton(props.list)}
                 </ul>
             </div>
-            <div className="p-4 w-75">
-                <div className="h2">Cacar</div>
-                <hr />
-                <div className="mb-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
-                <div>
-                    Treatment: <b>Beli Obat</b>
-                </div>
-            </div>
+            {showDetail(detail)}
         </div>
     )
-}
-
-function drawListButton(list) {
-    return list.map((data, index) => {
-        return <ListButton key={data._id} name={data.name} active={index == 0} />
-    });
 }
 
 export default MainBar

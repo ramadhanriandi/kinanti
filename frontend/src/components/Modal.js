@@ -5,7 +5,6 @@ import $ from 'jquery';
 
 function Modal() {
     useEffect(() => {
-        // effect
         $("#submit-disease").on('click', () => {
             $.post("http://localhost:8080/api/diseases", response => {
                 if (response.status === 'success') {
@@ -16,7 +15,8 @@ function Modal() {
         return () => {
             $("#submit-disease").off('click');
         }
-    })
+    }, []);
+
     return (
         <div id="add-disease-modal" className="modal right fade" tabIndex="-1" role="dialog">
             <div className="modal-dialog" role="document">
