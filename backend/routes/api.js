@@ -13,6 +13,9 @@ router.route('/diseases')
   .get(diseaseController.index)
   .post(diseaseController.add);
 
+router.route('/diseases/search')
+  .post(diseaseController.search)
+
 router.route('/diseases/:disease_id')
   .get(diseaseController.view)
   .patch(diseaseController.update)
