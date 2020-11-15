@@ -81,3 +81,19 @@ exports.delete = function (req, res) {
     })
   })
 }
+
+exports.search = function (req, res) {
+  Disease.find({ name: { $in: req.body.names }}, function (err, disease) {
+    if (err)
+      res.json({
+        status: "error",
+        message: err,
+      });
+
+    res.json({
+      status: "success",
+      message: "Search diseases result",
+      data: disease,
+    });
+  });
+};
