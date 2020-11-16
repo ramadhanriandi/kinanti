@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import ListButton from './ListButton'
+import ListButton from '../../components/ListButton'
 import $ from 'jquery';
 
-function MainBar(props) {
+function DoctorListMain(props) {
     const [id, setId] = useState(-1);
     const [detail, setDetail] = useState();
 
@@ -45,10 +45,10 @@ function MainBar(props) {
     return (
         <div className="d-flex flex-grow-1">
             <div className="p-4 w-25" style={{ 'background': '#edf1f2' }}>
-                <div className="h5">{props.title}</div>
+                <div className="h5">Doctor List</div>
                 <button className="my-3 py-2 btn btn-primary btn-block text-medium"
                     style={{ "background": "rgb(32, 83, 175)", "fontSize": 12, "fontWeight": 500 }}
-                    data-toggle="modal" data-target="#add-disease-modal">
+                    data-toggle="modal" data-target="#add-doctor-modal">
                     Add Doctor
                 </button>
                 <ul className="list-group">
@@ -60,4 +60,4 @@ function MainBar(props) {
     )
 }
 
-export default MainBar
+export default DoctorListMain

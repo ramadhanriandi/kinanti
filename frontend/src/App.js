@@ -6,6 +6,7 @@ import TopBar from './components/TopBar';
 import NavBar from './components/NavBar';
 import Modal from './components/Modal';
 import SymptompsDetection from './pages/SymtompsDetection';
+import DoctorReservation from './pages/DoctorReservation';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <TopBar />
       <Modal />
       <div className="d-flex" style={{'minHeight': '90vh'}}>
-        <NavBar />
-        <SymptompsDetection />
+        <NavBar nav="DR" />
+        <DoctorReservation />
+        {/* <SymptompsDetection /> */}
       </div>
     </div>
   );

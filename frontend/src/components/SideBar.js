@@ -1,12 +1,17 @@
 import React from 'react'
 import LinkButton from './LinkButton';
 
-function SideBar() {
+function SideBar(props) {
+    function showLink(list) {
+        return list.map((val) => {
+            return <LinkButton name={val} />
+        });
+    }
     return (
         <div className="p-4 elevation-1" style={{'maxWidth' : '20%'}}>
-            <div className="h5 mb-2">Symtomps Detection</div>
+            <div className="h5 mb-2">{props.title}</div>
             <div className="list-group">
-                <LinkButton name="Diseases List" />
+                {showLink(props.list)}
             </div>
         </div>
     )
