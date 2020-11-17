@@ -28,6 +28,9 @@ router.route('/doctors')
   .get(doctorController.index)
   .post(doctorController.add);
 
+router.route('/doctors/available')
+  .get(doctorController.getAvailable);
+
 router.route('/doctors/:doctor_id')
   .get(doctorController.view)
   .patch(doctorController.update)
