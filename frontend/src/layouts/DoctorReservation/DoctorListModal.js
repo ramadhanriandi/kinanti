@@ -12,6 +12,8 @@ function DoctorListModal() {
     })
 
     function sendDoctorRequest() {
+        doctor.schedules = doctor.schedules.sort((a, b) => a - b)
+                        .map(val => val < 10 ? ("0" + val + ":00") : (val + ":00"))
         $.post("http://localhost:8080/api/doctors", doctor, response => {
             if (response.message === 'New doctor Added!') {
                 window.location.reload()
@@ -46,8 +48,8 @@ function DoctorListModal() {
         let clocks = []
         for (let i = start; i < end; i++) {
             clocks.push(
-                <div className="form-check">
-                    <input onChange={e => changeSchedules(`${i < 10 ? "0" + i : i}:00`, e)} type="checkbox" className="form-check-input" id={`jam${i}`} />
+                <div key={i} className="form-check">
+                    <input onChange={e => changeSchedules(i, e)} type="checkbox" className="form-check-input" id={`jam${i}`} />
                     <label className="form-check-label" htmlFor={`jam${i}`}>{`${i < 10 ? "0" + i : i}:00`}</label>
                 </div>
             );
@@ -70,7 +72,7 @@ function DoctorListModal() {
                         <Input onChange={changeDescription} name="description" field="Description" multiline={true} placeholder="Enter doctor's description" required={true} />
                         <Input onChange={changeAddress} name="address" field="Address" placeholder="Enter doctor's address" required={true} />
 
-                        <div class="d-flex flex-row justify-content-around">
+                        <div className="d-flex flex-row justify-content-around">
                             <div>
                                 {showSchedulesClock(0, 12)}
                             </div>
@@ -78,17 +80,6 @@ function DoctorListModal() {
                                 {showSchedulesClock(12, 24)}
                             </div>
                         </div>
-                        {/* <div className="form-check">
-                            <input onChange={e => changeSchedules("00.00", e)} type="checkbox" className="form-check-input" id="jam1" />
-                            <label className="form-check-label" htmlFor="jam1">00.00</label>
-                        </div> */}
-                        {/* <input className="form-control" type="checkbox" id="jam1" name="jam" value="00.00" />
-                        <label htmlFor="jam1">00.00</label><br /> */}
-                        {/* <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" />
-                        <label htmlFor="vehicle2"> I have a car</label><br />
-                        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" />
-                        <label htmlFor="vehicle3"> I have a boat</label><br></br> */}
-
                     </div>
                     <div className="modal-footer">
                         <Button onClick={sendDoctorRequest} type="submit" color="primary" text="Add Doctor" />

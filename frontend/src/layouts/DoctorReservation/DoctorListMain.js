@@ -8,21 +8,29 @@ function DoctorListMain(props) {
 
     useEffect(() => {
         if (id !== -1) {
-            $.get(`http://localhost:8080/api/diseases/${id}`, response => {
+            $.get(`http://localhost:8080/api/doctors/${id}`, response => {
+                console.log(response.data);
                 setDetail(response.data);
             })
         }
     }, [id]);
 
-    function clickList(id, event) {
+    function clickList(id, _) {
         setId(id);
     }
 
     function showListButton(list) {
         return list.map(data => {
-            return <ListButton key={data._id} name={data.name}
+            return <ListButton active={data._id == id} key={data._id} name={data.name}
                 onClick={(e) => clickList(data._id, e)} />
         })
+    }
+
+    function showSchedules(schedules) {
+        console.log(schedules);
+        return schedules.map(element => {
+            return <li key={element}>{element}</li>
+        });
     }
 
     function showDetail(detail) {
@@ -35,7 +43,10 @@ function DoctorListMain(props) {
                         {detail.description}
                     </div>
                     <div>
-                        Treatment: <b>{detail.treatment}</b>
+                        Address: <b>{detail.address}</b>
+                    </div>
+                    <div>
+                        Available at: {showSchedules(detail.schedules)}
                     </div>
                 </div>
             )
