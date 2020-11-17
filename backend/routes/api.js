@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const diseaseController = require('../controllers/disease.controller');
 const doctorController = require('../controllers/doctor.controller');
+const reservationController = require('../controllers/reservation.controller');
 
 router.get('/', function(req, res) {
   res.json({
@@ -32,5 +33,8 @@ router.route('/doctors/:doctor_id')
   .patch(doctorController.update)
   .put(doctorController.update)
   .delete(doctorController.delete);
+
+router.route('/reservations')
+  .post(reservationController.add);
 
 module.exports = router;

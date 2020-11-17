@@ -29,7 +29,7 @@ exports.add = function (req, res) {
       res.json(err);
     else {
       res.json({
-        message: "New doctor Added!",
+        message: "New Doctor Added!",
         data: doctor,
       });
     }
