@@ -21,7 +21,7 @@ function DoctorListMain(props) {
 
     function showListButton(list) {
         return list.map(data => {
-            return <ListButton active={data._id == id} key={data._id} name={data.name}
+            return <ListButton active={data._id === id} key={data._id} name={data.name}
                 onClick={(e) => clickList(data._id, e)} />
         })
     }
