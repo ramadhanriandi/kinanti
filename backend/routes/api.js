@@ -35,6 +35,7 @@ router.route('/doctors/:doctor_id')
   .delete(doctorController.delete);
 
 router.route('/reservations')
-  .post(reservationController.add);
+  .post(reservationController.add)
+  .get(reservationController.find);
 
 module.exports = router;
