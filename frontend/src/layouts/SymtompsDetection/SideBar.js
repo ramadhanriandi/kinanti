@@ -1,5 +1,5 @@
 import React from 'react'
-import LinkButton from './LinkButton';
+import LinkButton from '../../components/LinkButton';
 
 function SideBar(props) {
     function showLink(list) {

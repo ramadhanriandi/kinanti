@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import SideBar from '../components/SideBar';
-import MainBar from '../components/MainBar';
+import SideBar from '../layouts/SymtompsDetection/SideBar';
+import MainBar from '../layouts/SymtompsDetection/MainBar';
+import Modal from '../layouts/SymtompsDetection/Modal';
 import $ from 'jquery';
 
 function SymtompsDetection() {
@@ -21,6 +22,7 @@ function SymtompsDetection() {
         <>
             <SideBar title={sideBarTitle} list={listSubsection} />
             <MainBar title={subsection} list={diseases} />
+            <Modal />
         </>
     )
 }

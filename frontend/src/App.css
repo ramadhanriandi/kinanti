@@ -103,3 +103,30 @@
   border-bottom-color: #EEEEEE;
   background-color: #FAFAFA;
 } */
+
+.link {
+  padding: 20px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  display: block;
+  text-decoration: none;
+  color: white;
+  background: #6c757d;
+  border-radius: 12px;
+}
+
+.link:hover {
+  color: white;
+  text-decoration: none;
+  cursor: default;
+}
+
+.link:hover:not(.link-active) {
+  background: #2E89EA;
+  cursor: pointer;
+}
+
+.link-active {
+  background: #006fe6;
+  font-weight: bold;
+}
