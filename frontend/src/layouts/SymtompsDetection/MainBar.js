@@ -45,7 +45,7 @@ function MainBar(props) {
                 <div className="p-4 w-75">
                     <div className="h2 d-flex justify-content-between">
                         {detail.name}
-                        <Button onClick={e => deleteDisease(detail._id, e)} type="button" text="Delete Disese" color="danger" />
+                        <Button onClick={e => deleteDisease(detail._id, e)} type="button" text="Delete Disease" color="danger" />
                     </div>
                     <hr />
                     <div className="mb-4">

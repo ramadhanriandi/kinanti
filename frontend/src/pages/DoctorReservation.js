@@ -15,10 +15,14 @@ function DoctorReservation() {
         });
     }, []);
 
+    function deleteDoctor(id) {
+        setDoctors(doctors.filter(val => val._id !== id));
+    }
+
     return (
         <>
             <DoctorListSide />
-            <DoctorListMain list={doctors} />
+            <DoctorListMain delete={deleteDoctor} list={doctors} />
             <DoctorListModal />
         </>
     )
