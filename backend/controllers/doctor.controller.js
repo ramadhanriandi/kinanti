@@ -110,6 +110,8 @@ exports.getAvailable = function (req, res) {
             message: reservationErr,
           });
 
+        let data = "List Dokter yang Tersedia:\n";
+
         for (i = 0; i < doctor.length; i++) {
           const tempSchedules = new Set(doctor[i].schedules);
 
@@ -127,12 +129,18 @@ exports.getAvailable = function (req, res) {
           }
           
           doctor[i].schedules = [...tempSchedules]; 
+
+          data += `\n[${i + 1}]\nNama: ${doctor[i].name}\nDeskripsi: ${doctor[i].description}\nAlamat: ${doctor[i].address}\nJadwal: `;
+          for (j = 0; j < doctor[i].schedules.length; j++) {
+            data += `${doctor[i].schedules[j]} `;
+          }
+          data += `\n`;
         }
 
         res.json({
           status: "success",
           message: "Available Doctor Schedules",
-          data: doctor,
+          data: data,
         });
       }
     );
