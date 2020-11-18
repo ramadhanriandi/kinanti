@@ -4,7 +4,7 @@ import LinkButton from '../../components/LinkButton';
 function SideBar(props) {
     function showLink(list) {
         return list.map((val) => {
-            return <LinkButton name={val} />
+            return <LinkButton key={val} name={val} />
         });
     }
     return (
