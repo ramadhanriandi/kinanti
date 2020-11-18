@@ -16,15 +16,20 @@ exports.add = function (req, res) {
     
     reservation.user_id = req.body.user_id;
     reservation.name = req.body.name;
-    reservation.datetime = `${requestedDate.getFullYear()}-${requestedDate.getMonth() + 1}-${requestedDate.getDate()}T${req.body.time}:00.000Z`;
+    reservation.datetime = `${requestedDate.getFullYear()}-${requestedDate.getMonth() + 1 < 10 ? '0' : ''}${requestedDate.getMonth() + 1}-${requestedDate.getDate() < 10 ? '0' : ''}${requestedDate.getDate()}T${req.body.time}:00.000Z`;
     reservation.doctor_id = doctor[0]._id;
 
     reservation.save(function (reservationErr) {
       if (reservationErr)
-        res.json(reservationErr);
+        res.json({
+          status: "error",
+          message: "Reservasi gagal dilakukan",
+        });
+
       else {
         res.json({
-          message: "New Reservation Added!",
+          status: "success",
+          message: "Reservasi berhasil dilakukan",
           data: reservation,
         });
       }
