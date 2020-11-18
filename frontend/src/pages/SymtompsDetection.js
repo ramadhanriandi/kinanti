@@ -13,7 +13,7 @@ function SymtompsDetection() {
     const listSubsection = ['Diseases List']
 
     useEffect(() => {
-        $.get("http://localhost:8080/api/diseases", response => {
+        $.get(`${process.env.REACT_APP_API_URL}/api/diseases`, response => {
             if (response.status === "success") {
                 setDiseases(response.data);
             }

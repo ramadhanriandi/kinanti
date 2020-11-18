@@ -8,7 +8,7 @@ function DoctorReservation() {
     const [doctors, setDoctors] = useState([])
 
     useEffect(() => {
-        $.get("http://localhost:8080/api/doctors", response => {
+        $.get(`${process.env.REACT_APP_API_URL}/api/doctors`, response => {
             if (response.status === "success") {
                 setDoctors(response.data);
             }

@@ -9,7 +9,7 @@ function MainBar(props) {
 
     useEffect(() => {
         if (id !== -1) {
-            $.get(`http://localhost:8080/api/diseases/${id}`, response => {
+            $.get(`${process.env.REACT_APP_API_URL}/api/diseases/${id}`, response => {
                 setDetail(response.data);
             })
         }
@@ -28,7 +28,7 @@ function MainBar(props) {
 
     function deleteDisease(id, e) {
         $.ajax({
-            url: `http://localhost:8080/api/diseases/${id}`,
+            url: `${process.env.REACT_APP_API_URL}/api/diseases/${id}`,
             type: 'DELETE',
             success: function(response) {
                 if (response.message === 'Disease Deleted') {

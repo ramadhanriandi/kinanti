@@ -9,7 +9,7 @@ function DoctorListMain(props) {
 
     useEffect(() => {
         if (id !== -1) {
-            $.get(`http://localhost:8080/api/doctors/${id}`, response => {
+            $.get(`${process.env.REACT_APP_API_URL}/api/doctors/${id}`, response => {
                 console.log(response.data);
                 setDetail(response.data);
             })
@@ -36,7 +36,7 @@ function DoctorListMain(props) {
 
     function deleteDoctor(id, e) {
         $.ajax({
-            url: `http://localhost:8080/api/doctors/${id}`,
+            url: `${process.env.REACT_APP_API_URL}/api/doctors/${id}`,
             type: 'DELETE',
             success: function(response) {
                 if (response.message === 'Doctor Deleted') {
