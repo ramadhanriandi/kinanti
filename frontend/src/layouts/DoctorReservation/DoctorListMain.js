@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ListButton from '../../components/ListButton'
+import Button from '../../components/Button'
 import $ from 'jquery';
 
 function DoctorListMain(props) {
@@ -33,11 +34,27 @@ function DoctorListMain(props) {
         });
     }
 
+    function deleteDoctor(id, e) {
+        $.ajax({
+            url: `http://localhost:8080/api/doctors/${id}`,
+            type: 'DELETE',
+            success: function(response) {
+                if (response.message === 'Doctor Deleted') {
+                    setDetail(null);
+                    props.delete(id);
+                }
+            }
+        });
+    }
+
     function showDetail(detail) {
         if (detail) {
             return (
                 <div className="p-4 w-75">
-                    <div className="h2">{detail.name}</div>
+                    <div className="h2 d-flex justify-content-between">
+                        {detail.name}
+                        <Button onClick={e => deleteDoctor(detail._id, e)} type="button" text="Delete Doctor" color="danger" />
+                    </div>
                     <hr />
                     <div className="mb-4">
                         {detail.description}

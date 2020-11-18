@@ -1,38 +1,23 @@
 import React from 'react'
+import {
+    NavLink,
+} from "react-router-dom";
 
-function NavBar(props) {
-    function getText(name) {
-        if (props.nav == name) {
-            return <span className="font-weight-bold">{name}</span>
-        }
-        else {
-            return <span>{name}</span>
-        }
-    }
-
-    function getColor(name) {
-        if (props.nav == name) {
-            return "bg-primary"
-        }
-        else {
-            return "bg-secondary"
-        }
-    }
-
+function NavBar() {
     return (
         <div className="px-3 bg-dark text-white">
-            <div className={"p-3 my-4 " + getColor('SD') + " rounded-lg"} style={{cursor: 'pointer'}}>
-                {getText('SD')}
-            </div>
-            <div className={"p-3 my-4 " + getColor('HE') + " rounded-lg"} style={{cursor: 'pointer'}}>
-                {getText('HE')}
-            </div>
-            <div className={"p-3 my-4 " + getColor('DR') + " rounded-lg"} style={{cursor: 'pointer'}}>
-                {getText('DR')}
-            </div>
-            <div className={"p-3 my-4 " + getColor('SR') + " rounded-lg"} style={{cursor: 'pointer'}}>
-                {getText('SR')}
-            </div>
+            <NavLink exact={true} to="/symtomps" className="link" activeClassName="link-active">
+                SD
+            </NavLink>
+            <NavLink exact={true} to="/health" className="link" activeClassName="link-active">
+                HE
+            </NavLink>
+            <NavLink exact={true} to="/doctors" className="link" activeClassName="link-active">
+                DR
+            </NavLink>
+            <NavLink exact={true} to="/reminder" className="link" activeClassName="link-active">
+                SR
+            </NavLink>
         </div>
     )
 }

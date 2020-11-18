@@ -9,6 +9,13 @@ function Button(props) {
             </div>
         )
     }
+    else if (props.color === 'danger') {
+        return (
+            <div>
+                <button onClick={props.onClick} id={props.id} type={props.type} data-dismiss={props.dismiss ? props.dismiss : ''} className="btn btn-danger" style={{ "background": getColor(props.color), "fontSize": 12, "fontWeight": 500 }}>{props.text}</button>            
+            </div>
+        )
+    }
     else {
         return (
             <div>

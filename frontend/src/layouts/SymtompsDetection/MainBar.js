@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import ListButton from './ListButton'
+import ListButton from '../../components/ListButton'
 import $ from 'jquery';
+import Button from '../../components/Button';
 
 function MainBar(props) {
     const [id, setId] = useState(-1);
@@ -25,11 +26,27 @@ function MainBar(props) {
         })
     }
 
+    function deleteDisease(id, e) {
+        $.ajax({
+            url: `http://localhost:8080/api/diseases/${id}`,
+            type: 'DELETE',
+            success: function(response) {
+                if (response.message === 'Disease Deleted') {
+                    setDetail(null);
+                    props.delete(id);
+                }
+            }
+        });
+    }
+
     function showDetail(detail) {
         if (detail) {
             return (
                 <div className="p-4 w-75">
-                    <div className="h2">{detail.name}</div>
+                    <div className="h2 d-flex justify-content-between">
+                        {detail.name}
+                        <Button onClick={e => deleteDisease(detail._id, e)} type="button" text="Delete Disease" color="danger" />
+                    </div>
                     <hr />
                     <div className="mb-4">
                         {detail.description}
