@@ -11,7 +11,7 @@ function Modal() {
     })
 
     function sendDiseaseRequest() {
-        $.post("http://localhost:8080/api/diseases", disease, response => {
+        $.post(`${process.env.REACT_APP_API_URL}/api/diseases`, disease, response => {
             if (response.message === 'New disease Added!') {
                 window.location.reload()
             }

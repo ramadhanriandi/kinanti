@@ -14,7 +14,7 @@ function DoctorListModal() {
     function sendDoctorRequest() {
         doctor.schedules = doctor.schedules.sort((a, b) => a - b)
                         .map(val => val < 10 ? ("0" + val + ":00") : (val + ":00"))
-        $.post("http://localhost:8080/api/doctors", doctor, response => {
+        $.post(`${process.env.REACT_APP_API_URL}/api/doctors`, doctor, response => {
             if (response.message === 'New doctor Added!') {
                 window.location.reload()
             }
